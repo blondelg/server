@@ -11,6 +11,5 @@ jobs:
       - run: sudo apt-get update
       - run: sudo apt-get install -y python3-virtualenv
       - run: virtualenv venv
-      - run: source venv/bin/activate
-      - run: pip install -U pip
-      - run: pip install -r requirements.txt
+      - run: venv/bin/pip install -U pip
+      - run: venv/bin/pip install -r requirements.txt
