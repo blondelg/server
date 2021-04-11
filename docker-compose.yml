@@ -4,6 +4,6 @@ services:
     build:
       context: .
       dockerfile: compose/local/Dockerfile
-    command: tail -F anything
+    command: /venv/bin/jupyter notebook --allow-root
     ports:
       - "8888:8888"
