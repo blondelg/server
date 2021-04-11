@@ -9,8 +9,10 @@ jobs:
     steps:
       - checkout # check out the code in the project directory
       - run:
-        name: Server dependencies
-        command: apt-get update
+          name: Server dependencies
+          command: |
+            apt-get update
+            apt-get install -y python3-virtualenv
       - run: apt-get install -y python3-virtualenv
       - run: virtualenv venv
       - run: venv/bin/pip install -U pip
