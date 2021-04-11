@@ -19,6 +19,26 @@ jobs:
             virtualenv venv
             venv/bin/pip install -U pip
             venv/bin/pip install -r requirements.txt
+  test:
+    docker:
+      - image: ubuntu:20.04 # the primary container, where your job's commands are run
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout # check out the code in the project directory
+      - run:
+          name: Server dependencies
+          command: |
+            apt-get update
+            apt-get install -y python3-virtualenv
+      - run:
+          name: Setup virtual environnement
+          command: |
+            virtualenv venv
+            venv/bin/pip install -U pip
+            venv/bin/pip install -r requirements.txt
+            venv/bin/python -m unittest app/tests.py
   deploy:
    machine:
      enabled: true
@@ -36,9 +56,11 @@ workflows:
  build-and-deploy:
    jobs:
      - build
+     - test
      - deploy:
          requires:
            - build # only deploy once build job has completed
+           - test
          filters:
            branches:
              only: master # only deploy on the master branch
