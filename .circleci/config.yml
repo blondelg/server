@@ -29,6 +29,7 @@ jobs:
      - run:
          name: Deploy Over SSH
          command: |
+           ssh $SSH_USER@$SSH_HOS "git clone git@github.com:blondelg/server.git"
            ssh $SSH_USER@$SSH_HOST "scripts/deploy.sh"
 workflows:
  version: 2.1
