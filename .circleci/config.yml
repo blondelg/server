@@ -32,7 +32,6 @@ workflows:
  build-and-deploy:
    jobs:
      - build
-     - test
      - deploy:
          requires:
            - build # only deploy once build job has completed
