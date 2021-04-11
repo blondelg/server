@@ -8,7 +8,9 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout # check out the code in the project directory
-      - run: apt-get update
+      - run:
+        name: Server dependencies
+        command: apt-get update
       - run: apt-get install -y python3-virtualenv
       - run: virtualenv venv
       - run: venv/bin/pip install -U pip
