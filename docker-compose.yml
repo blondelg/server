@@ -4,6 +4,6 @@ services:
     build:
       context: .
       dockerfile: compose/local/Dockerfile
-    command: /venv/bin/jupyter notebook --allow-root
+    command: /venv/bin/jupyter notebook --ip 0.0.0.0 --no-browser --allow-root
     ports:
       - "8888:8888"
