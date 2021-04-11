@@ -38,7 +38,9 @@ jobs:
             virtualenv venv
             venv/bin/pip install -U pip
             venv/bin/pip install -r requirements.txt
-            venv/bin/python -m unittest app/tests.py
+      - run:
+          name: Run tests
+          command: venv/bin/python -m unittest app/tests.py
   deploy:
    machine:
      enabled: true
@@ -53,13 +55,14 @@ jobs:
            ssh $SSH_USER@$SSH_HOST "~/venv/bin/pip install -r ~/server/requirements.txt"
 workflows:
  version: 2.1
- build-and-deploy:
+ build-test-deploy:
    jobs:
      - build
-     - test
+     - test:
+         requires:
+           - build
      - deploy:
          requires:
-           - build # only deploy once build job has completed
            - test
          filters:
            branches:
