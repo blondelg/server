@@ -5,3 +5,5 @@ services:
       context: .
       dockerfile: compose/local/Dockerfile
     command: tail -F anything
+    ports:
+      - "8888:8888"
