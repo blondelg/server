@@ -13,7 +13,9 @@ jobs:
           command: |
             apt-get update
             apt-get install -y python3-virtualenv
-      - run: apt-get install -y python3-virtualenv
-      - run: virtualenv venv
-      - run: venv/bin/pip install -U pip
-      - run: venv/bin/pip install -r requirements.txt
+      - run:
+          name: Setup virtual environnement
+          command: |
+            virtualenv venv
+            venv/bin/pip install -U pip
+            venv/bin/pip install -r requirements.txt
