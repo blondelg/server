@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [ $1 = start ]
+then
+    docker-compose up -d
+fi
+
+if [ $1 = stop ]
+then
+    docker-compose stop
+fi
+
+if [ $1 = tu ]
+then
+    docker-compose exec server /venv/bin/python /app/tests.py
+fi
+
+if [ $1 = tty ]
+then
+    docker-compose exec server /bin/bash
+fi
+
+if [ $1 = logs ]
+then
+    docker-compose logs 
+fi
