@@ -8,6 +8,7 @@ commands['stop']="docker-compose stop"
 commands['tu']="docker-compose exec server /venv/bin/python -m unittest"
 commands['tty']="docker-compose exec server /bin/bash"
 commands['logs']="docker-compose logs"
+commands['shell']="docker-compose exec server /venv/bin/ipython3"
 #commands['']=
 
 if [ -v commands[$1] ]; 
