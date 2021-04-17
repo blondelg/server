@@ -1,1 +1,2 @@
-compose/local/Dockerfile
+__pycache__/
+config/local/.env
