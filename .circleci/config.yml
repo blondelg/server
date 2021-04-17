@@ -55,6 +55,7 @@ jobs:
          command: |
            ssh $SSH_USER@$SSH_HOST "git -C ~/server pull origin master"
            ssh $SSH_USER@$SSH_HOST "~/venv/bin/pip install -r ~/server/requirements.txt"
+           ssh $SSH_USER@$SSH_HOST "crontab ~/server/config/crontab"
 workflows:
  version: 2.1
  build-test-deploy:
