@@ -12,7 +12,8 @@ jobs:
           name: Server dependencies
           command: |
             apt-get update
-            apt-get install -y python3-virtualenv
+            apt-get install -y python3-virtualenv cron
+            crontab config/crontab
       - run:
           name: Setup virtual environnement
           command: |
@@ -31,7 +32,8 @@ jobs:
           name: Server dependencies
           command: |
             apt-get update
-            apt-get install -y python3-virtualenv
+            apt-get install -y python3-virtualenv cron
+            crontab config/crontab
       - run:
           name: Setup virtual environnement
           command: |
