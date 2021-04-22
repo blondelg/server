@@ -46,10 +46,6 @@ jobs:
   deploy:
     machine:
       enabled: true
-    environment:
-      EMAIL_USERNAME: $EMAIL_USERNAME 
-      EMAIL_PASSWORD: $EMAIL_PASSWORD
-      PYTHONPATH: '/home/ubuntu/server/app'
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -60,7 +56,9 @@ jobs:
             ssh $SSH_USER@$SSH_HOST "git -C ~/server pull origin master"
             ssh $SSH_USER@$SSH_HOST "~/venv/bin/pip install -r ~/server/requirements.txt"
             ssh $SSH_USER@$SSH_HOST "crontab ~/server/config/crontab"
-            ssh $SSH_USER@$SSH_HOST "export PYTHONPATH='/app/app':$PYTHONPATH"
+            ssh $SSH_USER@$SSH_HOST "echo 'export PYTHONPATH=/home/ubuntu/server/app' >> /home/ubuntu/.bashrc"
+            ssh $SSH_USER@$SSH_HOST "echo 'export EMAIL_USERNAME=${EMAIL_USERNAME}' >> /home/ubuntu/.bashrc"
+            ssh $SSH_USER@$SSH_HOST "echo 'export EMAIL_PASSWORD=${EMAIL_PASSWORD}' >> /home/ubuntu/.bashrc"
 workflows:
  version: 2.1
  build-test-deploy:
