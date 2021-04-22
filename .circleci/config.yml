@@ -6,10 +6,6 @@ jobs:
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    environment:
-      EMAIL_USERNAME: $EMAIL_USERNAME 
-      EMAIL_PASSWORD: $EMAIL_PASSWORD
-      PYTHONPATH: '/home/ubuntu/server/app'
     steps:
       - checkout # check out the code in the project directory
       - run:
@@ -48,19 +44,23 @@ jobs:
           name: Run tests
           command: venv/bin/python -m unittest app/tests.py
   deploy:
-   machine:
-     enabled: true
-   steps:
-     - add_ssh_keys:
-         fingerprints:
-           - "a4:f2:c8:e6:9e:12:4c:41:a8:ef:28:14:3b:b5:5d:93"
-     - run:
-         name: Deploy Over SSH
-         command: |
-           ssh $SSH_USER@$SSH_HOST "git -C ~/server pull origin master"
-           ssh $SSH_USER@$SSH_HOST "~/venv/bin/pip install -r ~/server/requirements.txt"
-           ssh $SSH_USER@$SSH_HOST "crontab ~/server/config/crontab"
-           ssh $SSH_USER@$SSH_HOST "export PYTHONPATH='/app/app':$PYTHONPATH"
+    machine:
+      enabled: true
+    environment:
+      EMAIL_USERNAME: $EMAIL_USERNAME 
+      EMAIL_PASSWORD: $EMAIL_PASSWORD
+      PYTHONPATH: '/home/ubuntu/server/app'
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "a4:f2:c8:e6:9e:12:4c:41:a8:ef:28:14:3b:b5:5d:93"
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh $SSH_USER@$SSH_HOST "git -C ~/server pull origin master"
+            ssh $SSH_USER@$SSH_HOST "~/venv/bin/pip install -r ~/server/requirements.txt"
+            ssh $SSH_USER@$SSH_HOST "crontab ~/server/config/crontab"
+            ssh $SSH_USER@$SSH_HOST "export PYTHONPATH='/app/app':$PYTHONPATH"
 workflows:
  version: 2.1
  build-test-deploy:
