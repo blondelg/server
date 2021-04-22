@@ -1,5 +1,3 @@
-import sys  
-print(sys.path)
 from mail_client.mail_client import Client
 from kraken.api import get_btc_price
 from datetime import date
