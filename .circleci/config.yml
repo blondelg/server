@@ -6,11 +6,10 @@ jobs:
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-         
     environment:
       EMAIL_USERNAME: $EMAIL_USERNAME 
       EMAIL_PASSWORD: $EMAIL_PASSWORD
-      PYTHONPATH: '/home/ubuntu/server/app':$PYTHONPATH
+      PYTHONPATH: '/home/ubuntu/server/app'
     steps:
       - checkout # check out the code in the project directory
       - run:
