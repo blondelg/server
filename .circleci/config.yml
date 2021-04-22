@@ -57,8 +57,8 @@ jobs:
             ssh $SSH_USER@$SSH_HOST "~/venv/bin/pip install -r ~/server/requirements.txt"
             ssh $SSH_USER@$SSH_HOST "crontab ~/server/config/crontab"
             ssh $SSH_USER@$SSH_HOST "echo 'export PYTHONPATH=/home/ubuntu/server/app' >> /home/ubuntu/.bashrc"
-            ssh $SSH_USER@$SSH_HOST "echo 'export EMAIL_USERNAME=${$EMAIL_USERNAME}' >> /home/ubuntu/.bashrc"
-            ssh $SSH_USER@$SSH_HOST "echo 'export EMAIL_PASSWORD=${$EMAIL_PASSWORD}' >> /home/ubuntu/.bashrc"
+            ssh $SSH_USER@$SSH_HOST "echo 'export EMAIL_USERNAME=${echo $EMAIL_USERNAME}' >> /home/ubuntu/.bashrc"
+            ssh $SSH_USER@$SSH_HOST "echo 'export EMAIL_PASSWORD=${echo $EMAIL_PASSWORD}' >> /home/ubuntu/.bashrc"
 workflows:
  version: 2.1
  build-test-deploy:
