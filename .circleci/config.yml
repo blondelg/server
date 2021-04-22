@@ -6,6 +6,11 @@ jobs:
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+         
+    environment:
+      EMAIL_USERNAME: $EMAIL_USERNAME 
+      EMAIL_PASSWORD: $EMAIL_PASSWORD
+      PYTHONPATH: '/home/ubuntu/server/app':$PYTHONPATH
     steps:
       - checkout # check out the code in the project directory
       - run:
@@ -14,7 +19,6 @@ jobs:
             apt-get update
             apt-get install -y python3-virtualenv cron
             crontab config/crontab
-            export PYTHONPATH="/app/app":$PYTHONPATH
       - run:
           name: Setup virtual environnement
           command: |
@@ -35,7 +39,6 @@ jobs:
             apt-get update
             apt-get install -y python3-virtualenv cron
             crontab config/crontab
-            export PYTHONPATH="/app/app":$PYTHONPATH
       - run:
           name: Setup virtual environnement
           command: |
