@@ -1,5 +1,7 @@
 # CRONJOBS
-2 13 * * * source $HOME/.bashrc; venv/bin/python server/app/jobs/daily_bitcoin_price.py > /home/ubuntu/cron.log 2>&1
+SHELL=/bin/bash
+
+15 13 * * * $HOME/venv/bin/python $HOME/server/app/jobs/daily_bitcoin_price.py > $HOME/cron.log 2>&1
 
 
 
