@@ -1,2 +1,2 @@
 # CRONJOBS
-0 7 * * * venv/bin/python server/app/jobs/daily_bitcoin_price.py
+0 7 * * * venv/bin/python server/app/jobs/daily_bitcoin_price.py > /home/ubuntu/cron.log 2>&1
