@@ -1,8 +1,6 @@
 # CRONJOBS
-0 7 * * * venv/bin/python server/app/jobs/daily_bitcoin_price.py > /home/ubuntu/cron.log 2>&1
-0 12 * * * echo $PYTHONPATH > /home/ubuntu/cron.log 2>&1
-0 12 * * * who > /home/ubuntu/cron.log 2>&1
-0 12 * * * pwd > /home/ubuntu/cron.log 2>&1
+2 13 * * * source $HOME/.bashrc; venv/bin/python server/app/jobs/daily_bitcoin_price.py > /home/ubuntu/cron.log 2>&1
+
 
 
 
