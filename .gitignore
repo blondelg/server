@@ -1,2 +1,4 @@
 __pycache__/
 config/local/.env
+*.ipynb
+.ipynd_checkpoints
