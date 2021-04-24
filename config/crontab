@@ -2,6 +2,7 @@
 SHELL=/bin/bash
 
 53 13 * * * $HOME/server/app/jobs/shells/daily_bitcoin_price.sh > $HOME/cron.log 2>&1
+17 7 * * * printenv >> $HOME/cron.log 2>&1
 
 
 
