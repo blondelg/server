@@ -57,8 +57,8 @@ jobs:
             ssh $SSH_USER@$SSH_HOST "~/venv/bin/pip install -r ~/server/requirements.txt"
             ssh $SSH_USER@$SSH_HOST "crontab ~/server/config/crontab"
             ssh $SSH_USER@$SSH_HOST "rm ~/server/config/prod/.env"
-            ssh $SSH_USER@$SSH_HOST "echo EMAIL_USERNAME=${EMAIL_USERNAME} >> ~/server/config/prod/.env"
-            ssh $SSH_USER@$SSH_HOST "echo EMAIL_PASSWORD=${EMAIL_PASSWORD} >> ~/server/config/prod/.env"
+            ssh $SSH_USER@$SSH_HOST "echo 'export EMAIL_USERNAME=${EMAIL_USERNAME}' >> ~/server/config/prod/.env"
+            ssh $SSH_USER@$SSH_HOST "echo 'export EMAIL_PASSWORD=${EMAIL_PASSWORD}' >> ~/server/config/prod/.env"
 workflows:
  version: 2.1
  build-test-deploy:
