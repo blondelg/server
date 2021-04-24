@@ -1,8 +1,6 @@
 # CRONJOBS
 SHELL=/bin/bash
-
-* 8 * * * source $HOME/server/config/prod/.env; $HOME/server/app/jobs/shells/daily_bitcoin_price.sh > $HOME/cron.log 2>&1
-45 7 * * * source $HOME/server/config/prod/.env; printenv >> $HOME/cron.log 2>&1
+* 4 * * * source $HOME/server/config/prod/.env; $HOME/server/app/jobs/shells/daily_bitcoin_price.sh > $HOME/cron.log 2>&1
 
 
 
